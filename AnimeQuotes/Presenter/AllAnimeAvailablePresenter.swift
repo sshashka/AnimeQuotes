@@ -37,7 +37,7 @@ class AllAnimeAvailablePresenter: AllAnimeAvailablePresenterProtocol {
     }
     
     func getData() {
-        NetworkManager().getAllAnimeTitles{ [weak self] (anime) in
+        network.getAllAnimeTitles{ [weak self] (anime) in
             guard let strongSelf = self else { return }
             strongSelf.data = anime
         }

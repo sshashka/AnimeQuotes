@@ -37,7 +37,7 @@ class RandomQuotesModulePresenter: RandomQuotesModulePresenterProtocol {
     }
     
     func getData()  {
-        NetworkManager().getTenRandomQuotes { [weak self] (quotes) in
+        networkManager.getTenRandomQuotes { [weak self] (quotes) in
             guard let strongSelf = self else { return }
             strongSelf.data = quotes
         }
@@ -53,7 +53,7 @@ class RandomQuotesModulePresenter: RandomQuotesModulePresenterProtocol {
     @objc func getDataForSpecificAnime(_ notification: Notification) {
         if let dict = notification.userInfo as NSDictionary? {
             if let title = dict["titleOfAnime"] as? String {
-                NetworkManager().searchAnimeQuotesByTitle(title: title) { [weak self] (quotes) in
+                networkManager.searchAnimeQuotesByTitle(title: title) { [weak self] (quotes) in
                     guard let strongSelf = self else { return }
                     strongSelf.data = quotes
                 }
